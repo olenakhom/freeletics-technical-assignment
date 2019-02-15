@@ -7,29 +7,22 @@ import com.freeletics.www.common.utils.WebDriverWaitFactory;
 
 public class ElementService {
 
-    protected WebDriverWaitFactory explicitWait;
+    protected WebDriverWaitFactory webDriverWait;
 
-    public ElementService(WebDriverWaitFactory explicitWait) {
-        this.explicitWait = explicitWait;
+    public ElementService(WebDriverWaitFactory webDriverWait) {
+        this.webDriverWait = webDriverWait;
     }
 
     public void click(By locator) {
-        explicitWait.waitUntilElementClickable(locator).click();
+        webDriverWait.waitUntilElementClickable(locator).click();
     }
 
     public void click(WebElement element) {
-        explicitWait.waitUntilElementClickable(element).click();
+        webDriverWait.waitUntilElementClickable(element).click();
     }
 
     public String getText(By locator) {
-        return explicitWait.waitUntilElementVisible(locator).getText();
+        return webDriverWait.waitUntilElementVisible(locator).getText();
     }
 
-    public String getAttribute(By locator, String attribute) {
-        return explicitWait.waitUntilElementVisible(locator).getAttribute(attribute);
-    }
-
-    public String getCssValue(By locator, String cssStyle) {
-        return explicitWait.waitUntilElementVisible(locator).getCssValue(cssStyle);
-    }
 }

@@ -1,4 +1,6 @@
 target/
+allure-results/
 *.iml
 .idea/
+.allure/
 *.jpg
