@@ -13,7 +13,7 @@
         <testng.file>test-suite.xml</testng.file>
         <test.prop.file>prod.properties</test.prop.file>
         <lombok.version>1.16.16</lombok.version>
-        <selenium.version>3.4.0</selenium.version>
+        <selenium.version>3.11.0</selenium.version>
         <webdrivermanager.version>1.6.0</webdrivermanager.version>
         <testng.version>6.9.4</testng.version>
         <maven.compiler.plugin.version>3.3</maven.compiler.plugin.version>
@@ -26,6 +26,7 @@
         <allure.testng.version>2.0-BETA19</allure.testng.version>
         <common.configuration.version>1.10</common.configuration.version>
         <maven.surefire.plugin.version>2.20</maven.surefire.plugin.version>
+        <appium.version>6.0.0-BETA4</appium.version>
 
     </properties>
 
@@ -140,6 +141,11 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>${appium.version}</version>
         </dependency>
 
     </dependencies>
