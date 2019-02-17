@@ -12,6 +12,8 @@ import com.freeletics.www.common.models.JobPostingDto;
 import com.freeletics.www.common.services.ElementService;
 import com.freeletics.www.common.utils.WebDriverWaitFactory;
 
+import io.qameta.allure.Step;
+
 public class JobsPage {
 
     private Logger logger = LoggerFactory.getLogger(JobsPage.class);
@@ -30,6 +32,7 @@ public class JobsPage {
         this.elementService = new ElementService(webDriverWait);
     }
 
+    @Step("Get all jobs posts")
     public List<JobPostingDto> getAllJobs() {
         List<JobPostingDto> jobs = new ArrayList<>();
         getAllJobsElements().stream().forEach(jobElement -> {
@@ -43,12 +46,13 @@ public class JobsPage {
         return jobs;
     }
 
+    @Step("Click on job link with title {0} and job location {1}")
     public void clickJob(String title, String jobLocation) {
         WebElement jobUrl = getJobUrl(title, jobLocation);
         if (null == jobUrl) {
             logger.info("Job by title {} and location {} wasn't found", title, jobLocation);
         }
-        elementService.click(getJobUrl(title, jobLocation));
+        elementService.click(jobUrl);
     }
 
     private List<WebElement> getAllJobsElements() {

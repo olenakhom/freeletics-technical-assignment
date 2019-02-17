@@ -44,12 +44,12 @@ public abstract class BaseTest extends AbstractTestNGSpringContextTests {
     protected ApplicationFormPage applicationFormPage;
     protected WebDriver webDriver;
 
-    @BeforeMethod
+    @BeforeMethod(description = "Browser and pages setup")
     public void setUp() {
         initialize();
     }
 
-    @AfterMethod
+    @AfterMethod(description = "Quit browser")
     public void tearDown() {
         if (webDriver != null) {
             webDriver.quit();

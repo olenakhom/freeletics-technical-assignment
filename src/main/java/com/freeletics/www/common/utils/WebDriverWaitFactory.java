@@ -50,7 +50,6 @@ public class WebDriverWaitFactory {
 
     public boolean waitUntilElementIsInvisible(By locator) {
         return getWebDriverWait().until(invisibilityOfElementLocated(locator));
-        //return getWebDriverWait().until(invisibilityOfElementLocated(locator));
     }
 
     public boolean waitUntilElementsAreInvisible(List<WebElement> elements) {

@@ -13,35 +13,68 @@
         <testng.file>test-suite.xml</testng.file>
         <test.prop.file>prod.properties</test.prop.file>
         <lombok.version>1.16.16</lombok.version>
-        <selenium.version>3.4.0</selenium.version>
+        <selenium.version>3.11.0</selenium.version>
         <webdrivermanager.version>1.6.0</webdrivermanager.version>
         <testng.version>6.9.4</testng.version>
         <maven.compiler.plugin.version>3.3</maven.compiler.plugin.version>
         <maven.compiler.plugin.config.version>1.8</maven.compiler.plugin.config.version>
+
         <slf4j.api.version>1.7.5</slf4j.api.version>
+        <aspectj.version>1.8.10</aspectj.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <allure.maven.version>2.8</allure.maven.version>
+        <allure.testng.version>2.0-BETA19</allure.testng.version>
+        <common.configuration.version>1.10</common.configuration.version>
+        <maven.surefire.plugin.version>2.20</maven.surefire.plugin.version>
+        <appium.version>6.0.0-BETA4</appium.version>
+
     </properties>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven.compiler.plugin.version}</version>
-                <configuration>
-                    <source>${maven.compiler.plugin.config.version}</source>
-                    <target>${maven.compiler.plugin.config.version}</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+                <source>${maven.compiler.plugin.config.version}</source>
+                <target>${maven.compiler.plugin.config.version}</target>
+            </configuration>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>${maven.surefire.plugin.version}</version>
+            <configuration>
+                <suiteXmlFiles>
+                    <suiteXmlFile>test-suite.xml</suiteXmlFile>
+                </suiteXmlFiles>
+                <argLine>
+                    -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                </argLine>
+            </configuration>
+            <dependencies>
+                <dependency>
+                    <groupId>org.aspectj</groupId>
+                    <artifactId>aspectjweaver</artifactId>
+                    <version>${aspectj.version}</version>
+                </dependency>
+            </dependencies>
+        </plugin>
+    </plugins>
+</build>
 
     <dependencies>
 
         <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure.testng.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>commons-configuration</groupId>
             <artifactId>commons-configuration</artifactId>
-            <version>1.10</version>
+            <version>${common.configuration.version}</version>
         </dependency>
 
         <dependency>
@@ -109,71 +142,23 @@
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.api.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>${appium.version}</version>
+        </dependency>
 
     </dependencies>
 
-    <profiles>
+    <reporting>
+        <excludeDefaults>true</excludeDefaults>
+        <plugins>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${allure.maven.version}</version>
+            </plugin>
+        </plugins>
+    </reporting>
 
-        <profile>
-            <id>test-suite</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <version>${maven.compiler.plugin.version}</version>
-                        <configuration>
-                            <source>${maven.compiler.plugin.config.version}</source>
-                            <target>${maven.compiler.plugin.config.version}</target>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <configuration>
-                            <testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
-                            <redirectTestOutputToFile>false</redirectTestOutputToFile>
-                            <reportsDirectory>${basedir}/target/testng-results</reportsDirectory>
-                            <suiteXmlFiles>
-                                <suiteXmlFile>${testng.file}</suiteXmlFile>
-                            </suiteXmlFiles>
-                            <includes>
-                                <include>**/*Test*.*</include>
-                            </includes>
-                            <excludes>
-                                <exclude>**/unit/**</exclude>
-                            </excludes>
-                            <systemProperties>
-                                <property>
-                                    <name>propFile</name>
-                                    <value>${test.prop.file}</value>
-                                </property>
-                            </systemProperties>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>integration-test</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <!-- make surefire run any unit tests -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <includes>
-                                <include>**/unit/**</include>
-                            </includes>
-                            <useFile>false</useFile>
-                            <skipTests>true</skipTests>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-    </profiles>
 </project>
