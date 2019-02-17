@@ -46,7 +46,7 @@ This is already enough to see the Allure report in one command:
 ```
 allure serve /home/path/to/project/allure-results
 ```
-If report generated successfully, report page in browser should be opened automatically:
+If report generated successfully, report page should be opened automatically in browser:
 ![Allure Report](src/test/resources/allure_report.png?raw=true "Allure Report Example")
 
 # Part 2
