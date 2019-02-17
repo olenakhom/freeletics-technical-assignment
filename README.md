@@ -17,11 +17,13 @@ QA Engineer - Technical Test Exercise
 3. [Allure commandline for generation test report](https://docs.qameta.io/allure/#_installing_a_commandline)
 
 ### IntelliJ IDEA settings
-1. Open File --> Project Structure --> Project
-2. Select from Project SDK java version 1.8
-3. Select from Project language level 8-Lambdas, annotations
-4. Open File --> Project Structure --> Modules
-5. Select Language level 8-Lambdas, annotations on Source tab
+1. Open File --> New --> Project from Version control --> Git
+2. Clone from repository URL https://github.com/olenakhom/freeletics-technical-assignment.git
+3. Open File --> Project Structure --> Project
+4. Select java version 1.8 from Project SDK dropdown
+5. Select 8-Lambdas, annotations from Project language level dropdown
+6. Open File --> Project Structure --> Modules
+7. Select 8-Lambdas, annotations Language level on Source tab
 
 
 ### Test Execution
