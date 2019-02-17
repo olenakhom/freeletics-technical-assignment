@@ -47,7 +47,7 @@ This is already enough to see the Allure report in one command:
 allure serve /home/path/to/project/allure-results
 ```
 If report generated successfully, report page in browser should be opened automatically:
-![alt allure_report](https://github.com/olenakhom/freeletics-technical-assignment/tree/master/src/test/resources/allure_report.png)
+![Allure Report](src/test/resources/allure_report.png?raw=true "Allure Report Example")
 
 # Part 2
 
