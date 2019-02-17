@@ -104,7 +104,8 @@ DesiredCapabilities capabilities = DesiredCapabilities.android();
 Method driver.getContextHandles returns set of all available views in the app, 
 and method driver.getContext() returns current view.
 4. Locators should be taken via Browser for Web view.
-5. Locators should be taken via UI Automator Viewer for Native view.   
+5. Locators should be taken via UI Automator Viewer for Native view.
+6. App installation is required on mobile device 
 ```
 And if it was a native app?
 ```
@@ -115,4 +116,5 @@ DesiredCapabilities capabilities = DesiredCapabilities.android();
         capabilities.setCapability(MobileCapabilityType.APP_ACTIVITY, "activity");
         capabilities.setCapability(MobileCapabilityType.APP_PACKAGE, "package");
 3. Locators should be taken via UI Automator Viewer.
+4. App installation is required on mobile device
 ```
