@@ -3,7 +3,7 @@
 <suite name="Career site test suite" verbose="1" configfailurepolicy="continue">
     <test name="Job Details Page Test">
         <classes>
-            <class name="com.freeletics.www.JobDetailsPageTests"></class>
+            <class name="com.freeletics.www.tests.JobDetailsPageTests"></class>
         </classes>
     </test>
 </suite>

@@ -1,9 +1,13 @@
-package com.freeletics.www;
+package com.freeletics.www.tests;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+
+import com.freeletics.www.listeners.TestListener;
 
 import io.qameta.allure.Description;
 
+@Listeners({TestListener.class})
 public class JobDetailsPageTests extends BaseTest{
 
     @Test(description = "Test Job Post Description")

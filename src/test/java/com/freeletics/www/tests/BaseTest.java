@@ -1,4 +1,4 @@
-package com.freeletics.www;
+package com.freeletics.www.tests;
 
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
@@ -42,22 +42,22 @@ public abstract class BaseTest extends AbstractTestNGSpringContextTests {
     protected JobsPage jobsPage;
     protected JobDetailsPage jobDetailsPage;
     protected ApplicationFormPage applicationFormPage;
-    protected WebDriver webDriver;
+    private WebDriver webDriver;
 
     @BeforeMethod(description = "Browser and pages setup")
-    public void setUp() {
+    protected void setUp() {
         initialize();
     }
 
     @AfterMethod(description = "Quit browser")
-    public void tearDown() {
+    protected void tearDown() {
         if (webDriver != null) {
             webDriver.quit();
         }
     }
 
-    private void initialize() {
-        webDriver = initWebDriver();
+    protected void initialize() {
+        webDriver = initDriver();
         webDriverWait = new WebDriverWaitFactory(webDriver);
         homePage = new HomePage(webDriverWait);
         careersPage = new CareersPage(webDriverWait);
@@ -66,7 +66,7 @@ public abstract class BaseTest extends AbstractTestNGSpringContextTests {
         applicationFormPage = new ApplicationFormPage(webDriverWait);
     }
 
-    private WebDriver initWebDriver() {
+    private WebDriver initDriver() {
         WebDriverFactory webDriverFactory = new WebDriverFactory();
         try {
             webDriver = webDriverFactory.getDriver(runEnv, serverUrl);
@@ -75,6 +75,10 @@ public abstract class BaseTest extends AbstractTestNGSpringContextTests {
         }
         webDriver.manage().timeouts().implicitlyWait(IMPLICITLY_WAIT_TIMEOUT, TimeUnit.SECONDS);
         webDriver.manage().timeouts().pageLoadTimeout(PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
+        return webDriver;
+    }
+
+    public WebDriver getDriver(){
         return webDriver;
     }
 
